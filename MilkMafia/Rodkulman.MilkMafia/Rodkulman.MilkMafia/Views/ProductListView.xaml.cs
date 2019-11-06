@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rodkulman.MilkMafia.Models;
+using Rodkulman.MilkMafia.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,20 @@ namespace Rodkulman.MilkMafia.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductListView : ContentPage
     {
-        public ProductListView()
+        private ProductListViewModel viewModel;
+
+        public ProductListView(Category category)
         {
             InitializeComponent();
+
+            this.BindingContext = viewModel = new ProductListViewModel(category);
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await viewModel.LoadProducts();
         }
     }
 }

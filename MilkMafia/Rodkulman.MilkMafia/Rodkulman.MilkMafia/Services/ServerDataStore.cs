@@ -10,16 +10,22 @@ namespace Rodkulman.MilkMafia.Services
 {
     public static class ServerDataStore
     {
-        private static readonly RestClient client = new RestClient("");
+        private static readonly RestClient client = new RestClient("http://192.168.0.18/MilkMafia");
 
         public static async Task<Category[]> GetCategoriesAsync()
         {
-            var request = new RestRequest("api/v1/Category", Method.GET);
+            var request = new RestRequest("api/v0/Categories", Method.GET);
             var reponse = await client.ExecuteTaskAsync(request);
 
             if (reponse.IsSuccessful)
             {
-                return JsonConvert.DeserializeObject<Category[]>(reponse.Content);
+                var retVal = JsonConvert.DeserializeObject<Category[]>(reponse.Content);
+
+                Array.Resize(ref retVal, retVal.Length + 1);
+
+                retVal[^1] = Category.All;
+
+                return retVal;
             }
             else
             {
@@ -29,7 +35,7 @@ namespace Rodkulman.MilkMafia.Services
 
         public static async Task<Product[]> GetProductsAsync(Category category)
         {
-            var request = new RestRequest($"api/v1/Product/{category.Id}", Method.GET);
+            var request = new RestRequest($"api/v0/Products/{category.Id}", Method.GET);
             var reponse = await client.ExecuteTaskAsync(request);
 
             if (reponse.IsSuccessful)

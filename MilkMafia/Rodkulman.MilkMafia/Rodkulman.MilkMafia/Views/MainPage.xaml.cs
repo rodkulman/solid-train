@@ -27,7 +27,7 @@ namespace Rodkulman.MilkMafia.Views
         {
             if (!MenuPages.ContainsKey(category))
             {
-                MenuPages.Add(category, new NavigationPage());
+                MenuPages.Add(category, new NavigationPage(new ProductListView(category)));
             }
 
             var newPage = MenuPages[category];

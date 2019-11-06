@@ -3,17 +3,21 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rodkulman.MilkMafia.Services;
 using Rodkulman.MilkMafia.Views;
+using Rodkulman.MilkMafia.Models;
+using System.Collections.Generic;
+using MvvmHelpers;
 
 namespace Rodkulman.MilkMafia
 {
     public partial class App : Application
     {
+        public ObservableRangeCollection<Category> Categories { get; private set; }
 
         public App()
         {
             InitializeComponent();
                         
-            MainPage = new MainPage();
+            MainPage = new SplashView();
         }
 
         protected override void OnStart()
@@ -29,6 +33,11 @@ namespace Rodkulman.MilkMafia
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public void SetCategories(Category[] categories)
+        {
+            this.Categories = new ObservableRangeCollection<Category>(categories);
         }
     }
 }

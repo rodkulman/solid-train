@@ -1,4 +1,5 @@
 ﻿using Rodkulman.MilkMafia.Models;
+using Rodkulman.MilkMafia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,8 +8,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Rodkulman.MilkMafia.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MenuPage : ContentPage
     {
@@ -17,6 +16,15 @@ namespace Rodkulman.MilkMafia.Views
         public MenuPage()
         {
             InitializeComponent();
+
+            MenuItens.ItemsSource = (Application.Current as App).Categories;
+        }
+
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var category = e.SelectedItem as Category;
+
+            await RootPage.NavigateFromMenu(category);
         }
     }
 }
