@@ -33,6 +33,33 @@ namespace Rodkulman.MilkMafia.Services
             }
         }
 
+        public static byte[] GetImage(Category category)
+        {
+            // TODO: cache image and retrieve locally
+
+            if (!string.IsNullOrWhiteSpace(category.ImageId))
+            {
+                GetImageAsync(category.ImageId).ContinueWith(x => category.SetImage(x.Result));
+            }
+
+            return null;
+        }
+
+        public static async Task<byte[]> GetImageAsync(string id)
+        {
+            var request = new RestRequest($"api/v0/Images/{id}", Method.GET);
+            var reponse = await client.ExecuteTaskAsync(request);
+
+            if (reponse.IsSuccessful)
+            {
+                return reponse.RawBytes;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static async Task<Product[]> GetProductsAsync(Category category)
         {
             var request = new RestRequest($"api/v0/Products/{category.Id}", Method.GET);

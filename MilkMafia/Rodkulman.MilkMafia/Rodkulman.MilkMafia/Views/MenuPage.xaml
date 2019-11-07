@@ -7,13 +7,19 @@
              x:Class="Rodkulman.MilkMafia.Views.MenuPage"
              Title="Menu">
              
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout Spacing="0">
+        <Image Source="header.png" VerticalOptions="Start" HorizontalOptions="Center" Aspect="AspectFill" />
         <ListView x:Name="MenuItens" ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Name}" FontSize="20"/>
+                        <Grid Padding="5, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Image}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
+                            <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

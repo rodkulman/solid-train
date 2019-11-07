@@ -3,6 +3,7 @@ using Rodkulman.MilkMafia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +13,7 @@ namespace Rodkulman.MilkMafia.Views
     public partial class MenuPage : ContentPage
     {
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
-        
+
         public MenuPage()
         {
             InitializeComponent();

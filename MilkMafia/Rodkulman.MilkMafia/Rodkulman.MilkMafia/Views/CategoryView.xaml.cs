@@ -19,10 +19,10 @@ namespace Rodkulman.MilkMafia.Views
         {
             InitializeComponent();
 
-            CategoryItens.ItemsSource = (Application.Current as App).Categories;
+            CategoryItens.FlowItemsSource = (Application.Current as App).Categories;
         }
 
-        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void CategoryItens_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var category = e.Item as Category;
 

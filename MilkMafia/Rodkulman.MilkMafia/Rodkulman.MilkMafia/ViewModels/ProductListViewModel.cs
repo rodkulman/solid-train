@@ -28,6 +28,7 @@ namespace Rodkulman.MilkMafia.ViewModels
         public ProductListViewModel(Category category)
         {
             this.Category = category;
+            this.Title = category.Name;
         }
 
         public async Task LoadProducts()
