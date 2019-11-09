@@ -33,13 +33,13 @@ namespace Rodkulman.MilkMafia.Services
             }
         }
 
-        public static byte[] GetImage(Category category)
+        public static byte[] GetImage(BaseImageModel model)
         {
             // TODO: cache image and retrieve locally
 
-            if (!string.IsNullOrWhiteSpace(category.ImageId))
+            if (!string.IsNullOrWhiteSpace(model.ImageId))
             {
-                GetImageAsync(category.ImageId).ContinueWith(x => category.SetImage(x.Result));
+                GetImageAsync(model.ImageId).ContinueWith(x => model.SetImage(x.Result));
             }
 
             return null;

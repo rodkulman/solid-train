@@ -7,15 +7,27 @@
              x:Class="Rodkulman.MilkMafia.Views.ProductListView"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Products}">
+        <ListView ItemsSource="{Binding Products}" RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Id}" />
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Price}" />
-                        </StackLayout>
+                        <Grid Padding="5" RowSpacing="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="90" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
+
+                             <Label Text="{Binding Name}" FontSize="Medium" Grid.Column="1" Grid.Row="0" LineBreakMode="MiddleTruncation" />
+                            <Label Text="{Binding Id}" Grid.Column="1" Grid.Row="1" />
+                            <Label Text="{Binding Price, StringFormat='R$ {0:N2}'}" Grid.Column="1" Grid.Row="2" />
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

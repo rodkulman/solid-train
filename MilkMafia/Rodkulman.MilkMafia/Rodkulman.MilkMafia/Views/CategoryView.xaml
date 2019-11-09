@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="Rodkulman.MilkMafia.Views.CategoryView">
     <ContentPage.Content>
-        <flv:FlowListView x:Name="CategoryItens" ItemTapped="CategoryItens_ItemTapped" FlowColumnMinWidth="128" RowHeight="128">
+        <flv:FlowListView x:Name="CategoryItens" FlowItemTapped="CategoryItens_ItemTapped" FlowColumnMinWidth="128" RowHeight="128">
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
                     <Grid Padding="4">
