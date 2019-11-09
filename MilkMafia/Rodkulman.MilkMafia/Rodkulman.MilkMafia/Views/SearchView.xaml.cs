@@ -13,18 +13,11 @@ namespace Rodkulman.MilkMafia.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchView : ContentPage
     {
-        private SearchViewModel viewModel;
-
         public SearchView()
         {
             InitializeComponent();
 
-            this.BindingContext = viewModel = new SearchViewModel();
-        }
-
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            viewModel.SeachCommand.Execute(null);
+            this.BindingContext = new SearchViewModel();
         }
     }
 }

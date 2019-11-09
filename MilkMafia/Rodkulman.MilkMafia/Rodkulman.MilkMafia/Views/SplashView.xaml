@@ -6,10 +6,6 @@
              mc:Ignorable="d"
              x:Class="Rodkulman.MilkMafia.Views.SplashView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Splash Placeholder"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Image Source="icon.png" VerticalOptions="Center" HorizontalOptions="Center" />
     </ContentPage.Content>
 </ContentPage>

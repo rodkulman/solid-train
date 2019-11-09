@@ -12,6 +12,7 @@ namespace Rodkulman.MilkMafia.Models
     public abstract class BaseImageModel : ObservableObject
     {
         private byte[] image = null;
+        private ImageSource imageSource;
 
         public abstract string ImageId { get; set; }
 
@@ -27,7 +28,12 @@ namespace Rodkulman.MilkMafia.Models
                 }
                 else
                 {
-                    return ImageSource.FromStream(() => new MemoryStream(image));
+                    if (imageSource == null)
+                    {
+                        imageSource = ImageSource.FromStream(() => new MemoryStream(image));
+                    }
+
+                    return imageSource;
                 }
             }
         }

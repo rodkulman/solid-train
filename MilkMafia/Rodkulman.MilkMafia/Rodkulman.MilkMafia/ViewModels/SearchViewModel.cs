@@ -15,7 +15,7 @@ namespace Rodkulman.MilkMafia.ViewModels
     {
         private string searchText;
         private ObservableRangeCollection<Product> products = new ObservableRangeCollection<Product>();
-        private Command seachCommand;
+        private Command searchCommand;
 
         public ObservableRangeCollection<Product> Products
         {
@@ -29,7 +29,7 @@ namespace Rodkulman.MilkMafia.ViewModels
             set { SetProperty(ref searchText, value); }
         }
 
-        public Command SeachCommand => seachCommand ?? (seachCommand = new Command(FilterProducts));
+        public Command SearchCommand => searchCommand ?? (searchCommand = new Command(FilterProducts));
 
         public async void FilterProducts()
         {
@@ -37,7 +37,7 @@ namespace Rodkulman.MilkMafia.ViewModels
 
             await Task.Run(() =>
             {
-                for (int i = Products.Count - 1; i > -1; i--)
+                for (int i = Products.Count - 1; i >= 0; i--)
                 {
                     products.RemoveAt(i);
                 }
@@ -50,11 +50,11 @@ namespace Rodkulman.MilkMafia.ViewModels
 
         private bool FilterProduct(Product product)
         {
-            var name = RemoveDiacritics(product.Name);
+            var sanitazedName = RemoveDiacritics(product.Name);
             var sanitazedSearchText = RemoveDiacritics(searchText);
 
             var seachWords = Regex.Split(sanitazedSearchText, @"\b[a-zA-Z0-9]+?\b");
-            var nameWords = Regex.Split(name, @"\b[a-zA-Z0-9]+?\b");
+            var nameWords = Regex.Split(sanitazedName, @"\b[a-zA-Z0-9]+?\b");
 
             return nameWords.Any(x =>
             {

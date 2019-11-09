@@ -18,21 +18,21 @@ namespace Rodkulman.MilkMafia.Views
             InitializeComponent();            
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            ServerDataStore.GetCategoriesAsync().ContinueWith(x =>
+            await ServerDataStore.GetCategoriesAsync().ContinueWith(x =>
             {
                 (Application.Current as App).SetCategories(x.Result);
 
                 ServerDataStore.GetProductsAsync().ContinueWith(y =>
                 {
-                    (Application.Current as App).SetProducts(y.Result);
-
-                    Application.Current.MainPage = new MainPage();
+                    (Application.Current as App).SetProducts(y.Result);                    
                 });
-            });                        
+            });
+
+            Application.Current.MainPage = new MainPage();
         }
     }
 }

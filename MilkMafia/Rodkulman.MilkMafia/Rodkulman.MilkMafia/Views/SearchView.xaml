@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid>
             <StackLayout Spacing="10" Margin="10">
-                <SearchBar Placeholder="Procurar" Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}" TextChanged="SearchBar_TextChanged" />
+                <SearchBar Placeholder="Procurar" Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}" />
                 <ListView ItemsSource="{Binding Products}" RowHeight="100">
                     <ListView.ItemTemplate>
                         <DataTemplate>

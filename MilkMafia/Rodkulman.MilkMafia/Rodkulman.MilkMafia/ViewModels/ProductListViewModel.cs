@@ -39,7 +39,7 @@ namespace Rodkulman.MilkMafia.ViewModels
 
             if (category != Category.All)
             {
-                var products = await Task.Run(() => (Application.Current as App).Products.Where(x => x.Category == category));
+                var products = await Task.Run(() => (Application.Current as App).Products.Where(x => x.Category.Id == category.Id).ToArray());
                 this.Products = new ObservableRangeCollection<Product>(products);
             }
             else
