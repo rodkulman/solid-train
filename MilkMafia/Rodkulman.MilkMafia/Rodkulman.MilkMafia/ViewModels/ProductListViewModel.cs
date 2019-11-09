@@ -3,8 +3,10 @@ using Rodkulman.MilkMafia.Models;
 using Rodkulman.MilkMafia.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Rodkulman.MilkMafia.ViewModels
 {
@@ -35,8 +37,15 @@ namespace Rodkulman.MilkMafia.ViewModels
         {
             this.IsBusy = true;
 
-            var products = await ServerDataStore.GetProductsAsync(category);
-            this.Products = new ObservableRangeCollection<Product>(products);
+            if (category != Category.All)
+            {
+                var products = await Task.Run(() => (Application.Current as App).Products.Where(x => x.Category == category));
+                this.Products = new ObservableRangeCollection<Product>(products);
+            }
+            else
+            {
+                this.Products = (Application.Current as App).Products;
+            }
 
             this.IsBusy = false;
         }

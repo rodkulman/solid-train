@@ -60,6 +60,21 @@ namespace Rodkulman.MilkMafia.Services
             }
         }
 
+        public static async Task<Product[]> GetProductsAsync()
+        {
+            var request = new RestRequest("api/v0/Products", Method.GET);
+            var reponse = await client.ExecuteTaskAsync(request);
+
+            if (reponse.IsSuccessful)
+            {
+                return JsonConvert.DeserializeObject<Product[]>(reponse.Content);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static async Task<Product[]> GetProductsAsync(Category category)
         {
             var request = new RestRequest($"api/v0/Products/{category.Id}", Method.GET);

@@ -6,7 +6,10 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              mc:Ignorable="d"
              x:Class="Rodkulman.MilkMafia.Views.CategoryView">
-    <ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Procurar" IconImageSource="search.png" Clicked="SearchItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>        
         <flv:FlowListView x:Name="CategoryItens" FlowItemTapped="CategoryItens_ItemTapped" FlowColumnMinWidth="128" RowHeight="128">
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>

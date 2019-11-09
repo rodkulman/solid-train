@@ -12,6 +12,7 @@ namespace Rodkulman.MilkMafia
     public partial class App : Application
     {
         public ObservableRangeCollection<Category> Categories { get; private set; }
+        public ObservableRangeCollection<Product> Products { get; private set; }
 
         public App()
         {
@@ -38,6 +39,11 @@ namespace Rodkulman.MilkMafia
         public void SetCategories(Category[] categories)
         {
             this.Categories = new ObservableRangeCollection<Category>(categories);
+        }
+
+        public void SetProducts(Product[] products)
+        {
+            this.Products = new ObservableRangeCollection<Product>(products);
         }
     }
 }

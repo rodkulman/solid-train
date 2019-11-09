@@ -28,5 +28,10 @@ namespace Rodkulman.MilkMafia.Views
 
             await RootPage.NavigateFromMenu(category);
         }
+
+        private async void SearchItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new SearchView()));
+        }
     }
 }
