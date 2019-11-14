@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using Rodkulman.MilkMafia.Models;
 using System;
@@ -12,20 +13,14 @@ namespace Rodkulman.MilkMafia.Services
     {
         private static readonly RestClient client = new RestClient("http://192.168.0.18/MilkMafia");
 
-        public static async Task<Category[]> GetCategoriesAsync()
+        public static async Task<Category[]> GetDatabase()
         {
-            var request = new RestRequest("api/v0/Categories", Method.GET);
+            var request = new RestRequest("api/v0/Categories/All", Method.GET);
             var reponse = await client.ExecuteTaskAsync(request);
 
             if (reponse.IsSuccessful)
             {
-                var retVal = JsonConvert.DeserializeObject<Category[]>(reponse.Content);
-
-                Array.Resize(ref retVal, retVal.Length + 1);
-
-                retVal[^1] = Category.All;
-
-                return retVal;
+                return JsonConvert.DeserializeObject<Category[]>(reponse.Content.Substring(1, reponse.Content.Length - 2));
             }
             else
             {
@@ -37,10 +32,12 @@ namespace Rodkulman.MilkMafia.Services
         {
             // TODO: cache image and retrieve locally
 
-            if (!string.IsNullOrWhiteSpace(model.ImageId))
+            var id = model.ImageId;
+
+            if (!string.IsNullOrWhiteSpace(id))
             {
-                GetImageAsync(model.ImageId).ContinueWith(x => model.SetImage(x.Result));
-            }
+                GetImageAsync(id).ContinueWith(x => model.SetImage(x.Result));
+            }            
 
             return null;
         }
@@ -53,36 +50,6 @@ namespace Rodkulman.MilkMafia.Services
             if (reponse.IsSuccessful)
             {
                 return reponse.RawBytes;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static async Task<Product[]> GetProductsAsync()
-        {
-            var request = new RestRequest("api/v0/Products", Method.GET);
-            var reponse = await client.ExecuteTaskAsync(request);
-
-            if (reponse.IsSuccessful)
-            {
-                return JsonConvert.DeserializeObject<Product[]>(reponse.Content);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static async Task<Product[]> GetProductsAsync(Category category)
-        {
-            var request = new RestRequest($"api/v0/Products/{category.Id}", Method.GET);
-            var reponse = await client.ExecuteTaskAsync(request);
-
-            if (reponse.IsSuccessful)
-            {
-                return JsonConvert.DeserializeObject<Product[]>(reponse.Content);
             }
             else
             {

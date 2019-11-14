@@ -13,6 +13,7 @@ namespace Rodkulman.MilkMafia.Views
     public partial class MainPage : MasterDetailPage
     {
         private readonly Dictionary<Category, NavigationPage> MenuPages = new Dictionary<Category, NavigationPage>();
+        private readonly NavigationPage categoryPage;
 
         public MainPage()
         {
@@ -20,7 +21,16 @@ namespace Rodkulman.MilkMafia.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add(Category.All, (NavigationPage)Detail);
+            categoryPage = (NavigationPage)Detail;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Detail = categoryPage;
+
+            IsPresented = false;
+
+            return base.OnBackButtonPressed();
         }
 
         public async Task NavigateFromMenu(Category category)

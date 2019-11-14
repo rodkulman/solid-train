@@ -19,7 +19,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{Binding Image}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" />
-                            <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{Binding Description}" VerticalOptions="Center" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

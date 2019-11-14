@@ -20,8 +20,8 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="* " />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120" />
-                        <Label Text="{Binding Name}" VerticalOptions="End" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" BackgroundColor="Black" TextColor="White" FontAttributes="Bold" Opacity="0.7" />
+                        <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="120"/>
+                        <Label Text="{Binding Description}" VerticalOptions="End" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" BackgroundColor="Black" TextColor="White" FontAttributes="Bold" Opacity="0.7" />
                     </Grid>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>

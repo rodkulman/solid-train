@@ -15,6 +15,7 @@ namespace Rodkulman.MilkMafia.ViewModels
     {
         private string searchText;
         private ObservableRangeCollection<Product> products = new ObservableRangeCollection<Product>();
+        private IEnumerable<Product> allProducts;
         private Command searchCommand;
 
         public ObservableRangeCollection<Product> Products
@@ -31,6 +32,11 @@ namespace Rodkulman.MilkMafia.ViewModels
 
         public Command SearchCommand => searchCommand ?? (searchCommand = new Command(FilterProducts));
 
+        public SearchViewModel()
+        {
+            allProducts = (Application.Current as App).Categories.SelectMany(x => x.Products).ToList();
+        }
+
         public async void FilterProducts()
         {
             this.IsBusy = true;
@@ -42,7 +48,7 @@ namespace Rodkulman.MilkMafia.ViewModels
                     products.RemoveAt(i);
                 }
 
-                products.AddRange((Application.Current as App).Products.Where(FilterProduct));
+                products.AddRange(allProducts.Where(FilterProduct));
             });
 
             this.IsBusy = false;
@@ -50,7 +56,7 @@ namespace Rodkulman.MilkMafia.ViewModels
 
         private bool FilterProduct(Product product)
         {
-            var sanitazedName = RemoveDiacritics(product.Name);
+            var sanitazedName = RemoveDiacritics(product.Description);
             var sanitazedSearchText = RemoveDiacritics(searchText);
 
             var seachWords = Regex.Split(sanitazedSearchText, @"\b[a-zA-Z0-9]+?\b");

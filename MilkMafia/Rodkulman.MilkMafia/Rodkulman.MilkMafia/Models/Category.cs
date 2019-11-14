@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using MvvmHelpers;
 using Newtonsoft.Json;
@@ -12,10 +13,27 @@ namespace Rodkulman.MilkMafia.Models
 {
     public class Category : BaseImageModel
     {
-        public static Category All { get; } = new Category() { Name = "All", ImageId = "placeholder" };        
+        private string imageId;
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public override string ImageId { get; set; }
+        public string Description { get; set; }
+        public override string ImageId 
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(imageId))
+                {
+                    return this.Products.FirstOrDefault()?.MaterialId ?? "placeholder";
+                }
+                else
+                {
+                    return imageId;
+                }
+                
+            }
+            set { imageId = value; }
+        }
+                
+        public ICollection<Product> Products { get; set; }
     }
 }

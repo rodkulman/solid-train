@@ -22,14 +22,9 @@ namespace Rodkulman.MilkMafia.Views
         {
             base.OnAppearing();
 
-            await ServerDataStore.GetCategoriesAsync().ContinueWith(x =>
+            await ServerDataStore.GetDatabase().ContinueWith(x =>
             {
                 (Application.Current as App).SetCategories(x.Result);
-
-                ServerDataStore.GetProductsAsync().ContinueWith(y =>
-                {
-                    (Application.Current as App).SetProducts(y.Result);                    
-                });
             });
 
             Application.Current.MainPage = new MainPage();

@@ -13,6 +13,7 @@ namespace Rodkulman.MilkMafia.Models
     {
         private byte[] image = null;
         private ImageSource imageSource;
+        private bool requested = false;
 
         public abstract string ImageId { get; set; }
 
@@ -22,8 +23,9 @@ namespace Rodkulman.MilkMafia.Models
         {
             get
             {
-                if (image == null && (image = ServerDataStore.GetImage(this)) == null)
+                if (image == null && (!requested) && (image = ServerDataStore.GetImage(this)) == null)
                 {
+                    requested = true;
                     return null;
                 }
                 else
@@ -39,7 +41,7 @@ namespace Rodkulman.MilkMafia.Models
         }
 
         internal void SetImage(byte[] image)
-        {
+        {            
             SetProperty(ref this.image, image, nameof(Image));
         }
     }

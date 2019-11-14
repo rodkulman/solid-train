@@ -22,12 +22,5 @@ namespace Rodkulman.MilkMafia.Views
 
             this.BindingContext = viewModel = new ProductListViewModel(category);
         }
-
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            await viewModel.LoadProducts();
-        }
     }
 }

@@ -26,9 +26,9 @@
 
                                     <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="90" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
 
-                                    <Label Text="{Binding Name}" FontSize="Medium" Grid.Column="1" Grid.Row="0" LineBreakMode="MiddleTruncation" />
-                                    <Label Text="{Binding Id}" Grid.Column="1" Grid.Row="1" />
-                                    <Label Text="{Binding Price, StringFormat='R$ {0:N2}'}" Grid.Column="1" Grid.Row="2" />
+                                    <Label Text="{Binding Description}" FontSize="Medium" Grid.Column="1" Grid.Row="0" LineBreakMode="MiddleTruncation" />
+                                    <Label Text="{Binding MaterialId}" Grid.Column="1" Grid.Row="1" />
+                                    <Label Text="{Binding UnitPrice, StringFormat='R$ {0:N2}'}" Grid.Column="1" Grid.Row="2" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
