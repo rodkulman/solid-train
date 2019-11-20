@@ -11,7 +11,7 @@ namespace Rodkulman.MilkMafia.Services
 {
     public static class ServerDataStore
     {
-        private static readonly RestClient client = new RestClient("http://192.168.0.18/MilkMafia");
+        private static readonly RestClient client = new RestClient("http://142.93.71.132");
 
         public static async Task<Category[]> GetDatabase()
         {

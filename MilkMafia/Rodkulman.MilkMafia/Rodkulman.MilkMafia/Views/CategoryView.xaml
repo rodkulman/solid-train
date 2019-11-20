@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              mc:Ignorable="d"
-             x:Class="Rodkulman.MilkMafia.Views.CategoryView">
+             x:Class="Rodkulman.MilkMafia.Views.CategoryView"
+             Title="Direlo">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Procurar" IconImageSource="search.png" Clicked="SearchItem_Clicked" />
     </ContentPage.ToolbarItems>
