@@ -17,7 +17,7 @@ namespace Rodkulman.MilkMafia
         {
             InitializeComponent();
                         
-            MainPage = new SplashView();
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()
