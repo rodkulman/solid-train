@@ -18,15 +18,24 @@ namespace Rodkulman.MilkMafia.ViewModels
         {
             get { return invalidLogin; }
             set { SetProperty(ref invalidLogin, value); }
-        }        
+        }
 
         public string CPF
         {
             get { return cpf; }
-            set { SetProperty(ref cpf, value); }
+            set
+            {
+                SetProperty(ref cpf, value);
+                loginCommand?.ChangeCanExecute();
+            }
         }
 
-        public Command LoginCommand => loginCommand ?? (loginCommand = new Command(Login));
+        public Command LoginCommand => loginCommand ?? (loginCommand = new Command(Login, ValidateCPF));
+
+        private bool ValidateCPF()
+        {
+            return !string.IsNullOrWhiteSpace(cpf) && cpf.Length == 11;
+        }
 
         private async void Login()
         {
@@ -47,6 +56,6 @@ namespace Rodkulman.MilkMafia.ViewModels
             }
 
             this.IsBusy = false;
-        }        
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace Rodkulman.MilkMafia.ViewModels
 
         public SearchViewModel()
         {
-            allProducts = (Application.Current as App).Categories.SelectMany(x => x.Products).ToList();
+            allProducts = (Application.Current as App).Categories.SelectMany(x => x.Products).Where(x => x.UnitPrice > 0);
         }
 
         public async void FilterProducts()

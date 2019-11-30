@@ -22,5 +22,10 @@ namespace Rodkulman.MilkMafia.Views
 
             this.BindingContext = viewModel = new ProductListViewModel(category);
         }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            (sender as ListView).SelectedItem = null;
+        }
     }
 }

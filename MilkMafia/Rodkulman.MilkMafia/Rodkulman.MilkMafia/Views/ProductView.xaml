@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Rodkulman.MilkMafia.Views.ProductView"
+             Title="{Binding Product.Description}">
+    <ContentPage.Content>
+        <TableView Intent="Data" Grid.Row="0">
+            <TableRoot>
+                <TableSection>
+                    <ImageCell ImageSource="{Binding Product.Image}" Text="{Binding Product.Description}" />
+                    <TextCell Text="Material" Detail="{Binding Product.MaterialId}" />
+                    <TextCell Text="Preço Unitário" Detail="{Binding Product.UnitPrice, StringFormat='R$ {0:N2}'}" />                                        
+                    <TextCell Text="{Binding Quantity, StringFormat='Acima de {0} caixas'}" Detail="{Binding QuantityPrice, StringFormat='R$ {0:N2}'}" />
+                    <TextCell Text="ST" Detail="{Binding Product.STTax, StringFormat='{0:P2}'}" />
+                    <TextCell Text="Preço com ST" Detail="{Binding TaxPrice, StringFormat='R$ {0:N2}'}" />
+                </TableSection>
+                <TableSection Title="Paletização">
+                    <TextCell Text="Unidade por Caixa" Detail="{Binding Product.Paletization.BoxQuantity}" />
+                    <TextCell Text="Unidade por Lastro" Detail="{Binding LayerQuantity}" />
+                    <TextCell Text="Unidade por Palete" Detail="{Binding PalletQuantity}" />
+                    <TextCell Text="Validade" Detail="{Binding Product.ExpirationDays}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

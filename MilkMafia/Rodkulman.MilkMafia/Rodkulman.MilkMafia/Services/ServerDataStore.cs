@@ -102,8 +102,8 @@ namespace Rodkulman.MilkMafia.Services
             {
                 var content = JObject.Parse(reponse.Content);
 
-                token = content.Value<Guid>("token");
-                refresh = content.Value<Guid>("refresh");
+                token = Guid.Parse(content.Value<string>("token"));
+                refresh = Guid.Parse(content.Value<string>("refresh"));
 
                 return true;
             }
@@ -124,8 +124,8 @@ namespace Rodkulman.MilkMafia.Services
             {
                 var content = JObject.Parse(reponse.Content);
 
-                token = content.Value<Guid>("token");
-                refresh = content.Value<Guid>("refresh");
+                token = Guid.Parse(content.Value<string>("token"));
+                refresh = Guid.Parse(content.Value<string>("refresh"));
 
                 return true;
             }

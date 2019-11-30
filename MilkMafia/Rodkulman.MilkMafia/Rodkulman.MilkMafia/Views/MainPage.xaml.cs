@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 using Rodkulman.MilkMafia.Models;
 
 namespace Rodkulman.MilkMafia.Views
-{    
+{
     [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage
     {
@@ -26,18 +26,27 @@ namespace Rodkulman.MilkMafia.Views
 
         protected override bool OnBackButtonPressed()
         {
-            Detail = categoryPage;
+            if (Detail != categoryPage)
+            {
+                Detail = categoryPage;
 
-            IsPresented = false;
+                IsPresented = false;
 
-            return base.OnBackButtonPressed();
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
         }
 
         public async Task NavigateFromMenu(Category category)
         {
             if (!MenuPages.ContainsKey(category))
             {
-                MenuPages.Add(category, new NavigationPage(new ProductListView(category)));
+                var page = new NavigationPage(new ProductListView(category));
+
+                MenuPages.Add(category, page);
             }
 
             var newPage = MenuPages[category];

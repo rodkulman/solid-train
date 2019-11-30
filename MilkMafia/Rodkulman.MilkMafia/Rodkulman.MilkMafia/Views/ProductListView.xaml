@@ -3,32 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Rodkulman.MilkMafia.Controls"
              mc:Ignorable="d"
              x:Class="Rodkulman.MilkMafia.Views.ProductListView"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Category.Products}" RowHeight="100">
+        <ListView ItemsSource="{Binding Products}" RowHeight="100" ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="5" RowSpacing="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            
-                            <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="90" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
-
-                            <Label Text="{Binding Description}" FontSize="Medium" Grid.Column="1" Grid.Row="0" LineBreakMode="MiddleTruncation" />
-                            <Label Text="{Binding MaterialId}" Grid.Column="1" Grid.Row="1" />
-                            <Label Text="{Binding UnitPrice, StringFormat='R$ {0:N2}'}" Grid.Column="1" Grid.Row="2" />
-                        </Grid>
-                    </ViewCell>
+                    <Controls:ProductViewCell />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

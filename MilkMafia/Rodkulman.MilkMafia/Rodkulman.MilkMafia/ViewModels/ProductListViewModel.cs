@@ -20,6 +20,14 @@ namespace Rodkulman.MilkMafia.ViewModels
             set { SetProperty(ref category, value); }
         }
 
+        public IEnumerable<Product> Products
+        {
+            get
+            {
+                return category.Products.Where(x => x.UnitPrice > 0);
+            }
+        }
+
         public ProductListViewModel(Category category)
         {
             this.Category = category;

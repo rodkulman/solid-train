@@ -1,6 +1,8 @@
 ﻿using MvvmHelpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Rodkulman.MilkMafia.Models
@@ -16,8 +18,7 @@ namespace Rodkulman.MilkMafia.Models
         public int CategoryId { get; set; }
         public int ExpirationDays { get; set; }
         public double UnitPrice { get; set; }
-        public double STTax { get; set; }
-        public double STPrice { get; set; }
+        public double STTax { get; set; }        
         public override string ImageId
         {
             get
@@ -36,10 +37,10 @@ namespace Rodkulman.MilkMafia.Models
         }
 
         #endregion
-
+        
         #region Relations
         public Category Category { get; set; }
-        public ProductQuantity Quantity { get; set; }
+        public ICollection<ProductQuantity> Quantity { get; set; }
         public Paletization Paletization { get; set; }
         #endregion
     }

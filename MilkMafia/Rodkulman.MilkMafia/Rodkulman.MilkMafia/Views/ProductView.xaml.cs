@@ -1,4 +1,5 @@
-﻿using Rodkulman.MilkMafia.ViewModels;
+﻿using Rodkulman.MilkMafia.Models;
+using Rodkulman.MilkMafia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace Rodkulman.MilkMafia.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchView : ContentPage
+    public partial class ProductView : ContentPage
     {
-        public SearchView()
+        public ProductView(Product product)
         {
             InitializeComponent();
-        }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            (sender as ListView).SelectedItem = null;
+            this.BindingContext = new ProductViewModel(product);
         }
     }
 }

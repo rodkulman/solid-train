@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ViewModels="clr-namespace:Rodkulman.MilkMafia.ViewModels"
+             xmlns:Controls="clr-namespace:Rodkulman.MilkMafia.Controls"
              mc:Ignorable="d"
              x:Class="Rodkulman.MilkMafia.Views.LoginView">
     <ContentPage.BindingContext>
@@ -12,12 +13,12 @@
     <ContentPage.Content>
         <Grid>
             <StackLayout>
-                <Entry IsPassword="True" Placeholder="CPF" Text="{Binding CPF}" />
-                <Button Text="Login" Padding="20,5" Command="{Binding LoginCommand}" />
+                <Image Source="header.png" HorizontalOptions="Center" Margin="50" Aspect="AspectFill" />
+                <Entry IsPassword="True" Placeholder="CPF" Text="{Binding CPF}" Margin="15" ReturnCommand="{Binding LoginCommand}" MaxLength="11" />
+                <Button Text="Login" Padding="20,5" Command="{Binding LoginCommand}" HorizontalOptions="Center" />
+                <Label Text="Usuário não encontrado" TextColor="Red" IsVisible="{Binding InvalidLogin}" Margin="10, 20" HorizontalOptions="Center" />
             </StackLayout>
-            <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#88000000">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
-            </Grid>
+            <Controls:LoadingIndicator IsRunning="{Binding IsBusy}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
